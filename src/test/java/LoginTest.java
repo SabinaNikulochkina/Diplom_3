@@ -1,22 +1,26 @@
-import PageObject.*;
+import io.qameta.allure.junit4.DisplayName;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import pageObject.HomePage;
+import pageObject.LoginPage;
+import pageObject.RecoveryPasswordPage;
+import pageObject.RegistrationPage;
 
 import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.assertEquals;
 
 public class LoginTest {
+    private RegistrationPage registrationPage;
+    private LoginPage loginPage;
+    private HomePage homePage;
+    private RecoveryPasswordPage recoveryPasswordPage;
     private WebDriver driver;
-    RegistrationPage registrationPage;
-    LoginPage loginPage;
-    HomePage homePage;
-    RecoveryPasswordPage recoveryPasswordPage;
-    private String email = "test225@gmail.com";
-    private String password = "Qwerty123!";
+    private final String email = "test225@gmail.com";
+    private final String password = "Qwerty123!";
 
     @Before
     public void setup() {
@@ -34,9 +38,9 @@ public class LoginTest {
         homePage = new HomePage(driver);
 
     }
-
+    @DisplayName("Вход через кнопку личный кабинет")
     @Test
-    public void enterFromButtonAccount (){
+    public void enterFromButtonAccount() {
         homePage.openHomePage();
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         homePage.clickButtonAccount();
@@ -47,9 +51,9 @@ public class LoginTest {
         String result = homePage.getTextHeaderConstructor();
         assertEquals("Соберите бургер", result);
     }
-
+    @DisplayName("Вход через кнопку Войти в аккаунт")
     @Test
-    public void enterFromSignInButton (){
+    public void enterFromSignInButton() {
         homePage.openHomePage();
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         homePage.clickSignInButton();
@@ -60,9 +64,9 @@ public class LoginTest {
         String result = homePage.getTextHeaderConstructor();
         assertEquals("Соберите бургер", result);
     }
-
+    @DisplayName("Вход через окно регистрации")
     @Test
-    public void enterFromRegistrationPage (){
+    public void enterFromRegistrationPage() {
         registrationPage.openRegistrationPage();
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         registrationPage.clickSignInButton();
@@ -73,9 +77,9 @@ public class LoginTest {
         String result = homePage.getTextHeaderConstructor();
         assertEquals("Соберите бургер", result);
     }
-
+    @DisplayName("Вход через окно восстановления пароля")
     @Test
-    public void enterFromRecoveryPasswordPage (){
+    public void enterFromRecoveryPasswordPage() {
         recoveryPasswordPage.openRecoveryPasswordPage();
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         recoveryPasswordPage.clickSignInButton();

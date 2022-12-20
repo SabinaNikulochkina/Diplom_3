@@ -1,17 +1,18 @@
-import PageObject.*;
+import io.qameta.allure.junit4.DisplayName;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import pageObject.HomePage;
 
 import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.assertTrue;
 
 public class ConstructorTest {
+    private HomePage homePage;
     private WebDriver driver;
-    HomePage homePage;
 
     @Before
     public void setup() {
@@ -25,18 +26,18 @@ public class ConstructorTest {
         homePage = new HomePage(driver);
     }
 
-
+    @DisplayName("Проверка выбора вкладки Соусы")
     @Test
-    public void switchSauces (){
+    public void switchSauces() {
         homePage.openHomePage();
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         homePage.clickSauces();
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         assertTrue("Вкладка Соусы не активна", homePage.saucesTabIsActive());
     }
-
+    @DisplayName("Проверка выбора вкладки Булки")
     @Test
-    public void switchBuns (){
+    public void switchBuns() {
         homePage.openHomePage();
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         homePage.clickSauces();
@@ -44,9 +45,9 @@ public class ConstructorTest {
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         assertTrue("Вкладка Булки не активна", homePage.bunsTabIsActive());
     }
-
+    @DisplayName("Проверка выбора вкладки Начинки")
     @Test
-    public void switchFillings (){
+    public void switchFillings() {
         homePage.openHomePage();
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         homePage.clickFillings();

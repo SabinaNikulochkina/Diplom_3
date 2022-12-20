@@ -1,22 +1,24 @@
-import PageObject.*;
+import io.qameta.allure.junit4.DisplayName;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
+import pageObject.AccountPage;
+import pageObject.HomePage;
+import pageObject.LoginPage;
 
 import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.assertEquals;
 
 public class SwitchTest {
+    private LoginPage loginPage;
+    private AccountPage accountPage;
+    private HomePage homePage;
     private WebDriver driver;
-    LoginPage loginPage;
-    AccountPage accountPage;
-    HomePage homePage;
-    private String email = "test225@gmail.com";
-    private String password = "Qwerty123!";
+    private final String email = "test225@gmail.com";
+    private final String password = "Qwerty123!";
 
     @Before
     public void setup() {
@@ -32,9 +34,9 @@ public class SwitchTest {
         homePage = new HomePage(driver);
 
     }
-
+    @DisplayName("Клик по кнопке Конструктор находясь в Личном кабинете")
     @Test
-    public void clickOnConstructorFromAccount (){
+    public void clickOnConstructorFromAccount() {
         homePage.openHomePage();
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         homePage.clickButtonAccount();
@@ -49,9 +51,9 @@ public class SwitchTest {
         String result = homePage.getTextHeaderConstructor();
         assertEquals("Соберите бургер", result);
     }
-
+    @DisplayName("Клик по кнопке логотип находясь в Личном кабинете")
     @Test
-    public void clickOnLogoFromAccount (){
+    public void clickOnLogoFromAccount() {
         homePage.openHomePage();
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         homePage.clickButtonAccount();
@@ -66,9 +68,9 @@ public class SwitchTest {
         String result = homePage.getTextHeaderConstructor();
         assertEquals("Соберите бургер", result);
     }
-
+    @DisplayName("Выход из аккаунта")
     @Test
-    public void exitFromAccount (){
+    public void exitFromAccount() {
         homePage.openHomePage();
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         homePage.clickButtonAccount();

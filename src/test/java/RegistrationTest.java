@@ -1,14 +1,11 @@
-import PageObject.AccountPage;
-import PageObject.HomePage;
-import PageObject.LoginPage;
-import PageObject.RegistrationPage;
+import io.qameta.allure.junit4.DisplayName;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
+import pageObject.LoginPage;
+import pageObject.RegistrationPage;
 
 import java.util.concurrent.TimeUnit;
 
@@ -16,14 +13,13 @@ import static org.junit.Assert.assertEquals;
 
 public class RegistrationTest {
 
+    private RegistrationPage registrationPage;
+    private LoginPage loginPage;
     private WebDriver driver;
-    RegistrationPage registrationPage;
-    LoginPage loginPage;
-
-    private String name = "Sabina10";
-    private String email = "test1222@gmail.com";
-    private String password = "Qwerty123!";
-    private String passwordIncorrect = "Qwer";
+    private final String name = "Sabina10";
+    private final String email = "test1222@gmail.com";
+    private final String password = "Qwerty123!";
+    private final String passwordIncorrect = "Qwer";
 
     @Before
     public void setup() {
@@ -39,21 +35,21 @@ public class RegistrationTest {
         loginPage = new LoginPage(driver);
 
     }
-
+    @DisplayName("Регистрация нового пользователя")
     @Test
-    public void registrationNewUser (){
+    public void registrationNewUser() {
         registrationPage.openRegistrationPage();
-        registrationPage.fillingNameEmailPassword(name, email,password);
+        registrationPage.fillingNameEmailPassword(name, email, password);
         registrationPage.clickRegistrationButton();
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         String result = loginPage.getTextSignInButton();
         assertEquals("Войти", result);
     }
-
+    @DisplayName("Регистрация нового пользователя с некорретным паролем")
     @Test
-    public void registrationNewUserIncorrectPassword (){
+    public void registrationNewUserIncorrectPassword() {
         registrationPage.openRegistrationPage();
-        registrationPage.fillingNameEmailPassword(name, email,passwordIncorrect);
+        registrationPage.fillingNameEmailPassword(name, email, passwordIncorrect);
         registrationPage.clickRegistrationButton();
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         String result = registrationPage.getTextPasswordIncorrect();

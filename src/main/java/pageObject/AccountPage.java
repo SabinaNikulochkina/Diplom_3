@@ -1,26 +1,22 @@
-package PageObject;
+package pageObject;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
-
 public class AccountPage {
-    private WebDriver driver;
+    private final WebDriver driver;
+    private final String linkAccountPage = "https://stellarburgers.nomoreparties.site/account/profile";
+    // Кнопка "Выход"
+    private final By exitButton = By.xpath(".//button[text()='Выход']");
 
-    public AccountPage(WebDriver driver){
+    public AccountPage(WebDriver driver) {
         this.driver = driver;
     }
 
-    private String linkAccountPage = "https://stellarburgers.nomoreparties.site/account/profile";
-
-    // Кнопка "Выход"
-    private By exitButton = By.xpath(".//button[text()='Выход']");
-
     // метод открывает страницу профиля
-    public void openAccountPage (){
+    public void openAccountPage() {
 
         driver.get(linkAccountPage);
     }

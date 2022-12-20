@@ -1,41 +1,30 @@
-package PageObject;
+package pageObject;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
 
 public class RegistrationPage {
-    private WebDriver driver;
+    private final WebDriver driver;
+    private final String linkRegistrationPage = "https://stellarburgers.nomoreparties.site/register";
+    // Поле "Имя"
+    private final By nameInput = By.xpath(".//fieldset[1]//input");
+    // Поле "Email"
+    private final By emailInput = By.xpath(".//fieldset[2]//input");
+    // Поле "Пароль"
+    private final By passwordInput = By.xpath(".//fieldset[3]//input");
+    // Кнопка "Зарегистрироваться"
+    private final By registrationButton = By.xpath(".//*[@class='button_button__33qZ0 button_button_type_primary__1O7Bx button_button_size_medium__3zxIa']");
+    // Ошибка "Некорректный пароль"
+    private final By passwordIncorrect = By.xpath(".//p[text()='Некорректный пароль']");
+    // Кнопка "Войти"
+    private final By signInButton = By.className("Auth_link__1fOlj");
 
-    public RegistrationPage(WebDriver driver){
+    public RegistrationPage(WebDriver driver) {
         this.driver = driver;
     }
 
-    private String linkRegistrationPage = "https://stellarburgers.nomoreparties.site/register";
-
-    // Поле "Имя"
-    private By nameInput = By.xpath(".//fieldset[1]//input");
-
-    // Поле "Email"
-    private By emailInput = By.xpath(".//fieldset[2]//input");
-
-    // Поле "Пароль"
-    private By passwordInput = By.xpath(".//fieldset[3]//input");
-
-    // Кнопка "Зарегистрироваться"
-    private By registrationButton = By.xpath(".//*[@class='button_button__33qZ0 button_button_type_primary__1O7Bx button_button_size_medium__3zxIa']");
-
-    // Ошибка "Некорректный пароль"
-    private By passwordIncorrect = By.xpath(".//p[text()='Некорректный пароль']");
-
-    // Кнопка "Войти"
-    private By signInButton = By.className("Auth_link__1fOlj");
-
     // метод открывает страницу регистрации
-    public void openRegistrationPage (){
+    public void openRegistrationPage() {
 
         driver.get(linkRegistrationPage);
     }
@@ -56,7 +45,7 @@ public class RegistrationPage {
     }
 
     //метод, котрый объединяет ввод данных в поля
-    public void fillingNameEmailPassword(String name, String email, String password){
+    public void fillingNameEmailPassword(String name, String email, String password) {
         setName(name);
         setEmail(email);
         setPassword(password);

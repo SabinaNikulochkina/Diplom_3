@@ -1,53 +1,45 @@
-package PageObject;
+package pageObject;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class HomePage {
 
-    private WebDriver driver;
+    private final WebDriver driver;
+    private final String linkHomePage = "https://stellarburgers.nomoreparties.site/";
+    // Кнопка "Личный кабинет"
+    private final By buttonAccount = By.linkText("Личный Кабинет");
+    // Кнопка "Войти в аккаунт"
+    private final By signInButton = By.xpath(".//button[text()='Войти в аккаунт']");
+    // Кнопка "Конструктор"
+    private final By constructorButton = By.linkText("Конструктор");
+    // Лого "stellar burgers"
+    private final By logo = By.className("AppHeader_header__logo__2D0X2");
+    // Заголовок конструктора "Соберите бургер"
+    private final By headerConstructor = By.xpath(".//*[@class='text text_type_main-large mb-5 mt-10']");
+    // Раздел "Булки"
+    private final By bunsTab = By.xpath(".//div/span[text()='Булки']");
+    private final By bunsIsDisplayed = By.xpath(".//div[@class='tab_tab__1SPyG tab_tab_type_current__2BEPc pt-4 pr-10 pb-4 pl-10 noselect']/span");
+    // Раздел "Соусы"
+    private final By saucesTab = By.xpath(".//div/span[text()='Соусы']");
+    private final By saucesIsDisplayed = By.xpath(".//div[@class='tab_tab__1SPyG tab_tab_type_current__2BEPc pt-4 pr-10 pb-4 pl-10 noselect']/span");
 
-    public HomePage(WebDriver driver){
+    // Раздел "Начинки"
+    private final By fillingsTab = By.xpath(".//div/span[text()='Начинки']");
+    private final By fillingsIsDisplayed = By.xpath(".//div[@class='tab_tab__1SPyG tab_tab_type_current__2BEPc pt-4 pr-10 pb-4 pl-10 noselect']/span");
+    // Выбранный раздел
+    private final By activeTab = By.xpath(".//div[@class='tab_tab__1SPyG tab_tab_type_current__2BEPc pt-4 pr-10 pb-4 pl-10 noselect']/span");
+
+    public HomePage(WebDriver driver) {
         this.driver = driver;
     }
 
-    private String linkHomePage = "https://stellarburgers.nomoreparties.site/";
-
-    // Кнопка "Личный кабинет"
-    private By buttonAccount = By.linkText("Личный Кабинет");
-
-    // Кнопка "Войти в аккаунт"
-    private By signInButton = By.xpath(".//button[text()='Войти в аккаунт']");
-
-    // Кнопка "Конструктор"
-    private By constructorButton = By.linkText("Конструктор");
-
-    // Лого "stellar burgers"
-    private By logo = By.className("AppHeader_header__logo__2D0X2");
-
-    // Заголовок конструктора "Соберите бургер"
-    private By headerConstructor = By.xpath(".//*[@class='text text_type_main-large mb-5 mt-10']");
-
-    // Раздел "Булки"
-    private By bunsTab = By.xpath(".//div/span[text()='Булки']");
-    private By  bunsIsDisplayed = By.xpath(".//section[1]/div[2]/h2[1]");
-
-    // Раздел "Соусы"
-    private By saucesTab = By.xpath(".//div/span[text()='Соусы']");
-    private By saucesIsDisplayed = By.xpath(".//section[1]/div[2]/h2[2]");
-
-    // Раздел "Начинки"
-    private By fillingsTab = By.xpath(".//div/span[text()='Начинки']");
-    private By fillingsIsDisplayed = By.xpath(".//section[1]/div[2]/h2[3]");
-
-    // Выбранный раздел
-    private By activeTab = By.xpath(".//div[@class='tab_tab__1SPyG tab_tab_type_current__2BEPc pt-4 pr-10 pb-4 pl-10 noselect']/span");
-
     // метод открывает главную страницу
-    public void openHomePage (){
+    public void openHomePage() {
 
         driver.get(linkHomePage);
     }
+
     // клик по кнопке "Личный кабинет"
     public void clickButtonAccount() {
 
@@ -88,6 +80,7 @@ public class HomePage {
 
         driver.findElement(saucesTab).click();
     }
+
     // Вклалка Соусы активна
     public boolean saucesTabIsActive() {
         return driver.findElement(saucesIsDisplayed).isDisplayed();
@@ -109,7 +102,6 @@ public class HomePage {
 
         return driver.findElement(headerConstructor).getText();
     }
-
 
 
 }

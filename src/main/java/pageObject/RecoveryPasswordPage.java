@@ -1,30 +1,25 @@
-package PageObject;
+package pageObject;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
-
 public class RecoveryPasswordPage {
 
-    private WebDriver driver;
+    private final WebDriver driver;
+    private final String linkRecoveryPasswordPage = "https://stellarburgers.nomoreparties.site/forgot-password";
+    // Кнопка "Восстановить"
+    private final By recoveryPasswordButton = By.xpath(".//button[text()='Восстановить']");
+    // Кнопка "Войти"
+    private final By signInButton = By.linkText("Войти");
 
-    public RecoveryPasswordPage(WebDriver driver){
+    public RecoveryPasswordPage(WebDriver driver) {
         this.driver = driver;
     }
 
-    private String linkRecoveryPasswordPage = "https://stellarburgers.nomoreparties.site/forgot-password";
-
-    // Кнопка "Восстановить"
-    private By recoveryPasswordButton = By.xpath(".//button[text()='Восстановить']");
-
-    // Кнопка "Войти"
-    private By signInButton = By.linkText("Войти");
-
     // метод открывает страницу восстановления пароля
-    public void openRecoveryPasswordPage (){
+    public void openRecoveryPasswordPage() {
 
         driver.get(linkRecoveryPasswordPage);
     }
@@ -39,7 +34,6 @@ public class RecoveryPasswordPage {
         new WebDriverWait(driver, 10)
                 .until(ExpectedConditions.visibilityOfElementLocated(recoveryPasswordButton));
     }
-
 
 
 }
